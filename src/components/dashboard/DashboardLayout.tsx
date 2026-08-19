@@ -26,11 +26,20 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
   const navType = useNavigationType();
   const isBack = navType === "POP";
 
-  const pageVariants = {
-    initial: { opacity: 0, x: isBack ? -40 : 40, scale: 0.98 },
-    animate: { opacity: 1, x: 0, scale: 1 },
-    exit: { opacity: 0, x: isBack ? 40 : -40, scale: 0.98 },
-  };
+  // Mobile Chrome shows composited-tile corruption (horizontal noise lines)
+  // when large scrolling subtrees are transformed/scaled. Use a plain fade
+  // on mobile and keep the slide only on desktop.
+  const pageVariants = isMobile
+    ? {
+        initial: { opacity: 0 },
+        animate: { opacity: 1 },
+        exit: { opacity: 0 },
+      }
+    : {
+        initial: { opacity: 0, x: isBack ? -40 : 40, scale: 0.98 },
+        animate: { opacity: 1, x: 0, scale: 1 },
+        exit: { opacity: 0, x: isBack ? 40 : -40, scale: 0.98 },
+      };
 
   return (
     <SidebarProvider>
@@ -45,9 +54,9 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
                 {!aiOpen ? (
                   <motion.main
                     key="dashboard"
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -20 }}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
                     transition={{ duration: 0.2 }}
                     className="flex-1 overflow-y-auto overscroll-contain p-4 scroll-momentum"
                   >
@@ -58,8 +67,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
                         initial="initial"
                         animate="animate"
                         exit="exit"
-                        transition={springTransition}
-                        className="gpu-accelerated"
+                        transition={{ duration: 0.2 }}
                       >
                         {children}
                       </motion.div>
