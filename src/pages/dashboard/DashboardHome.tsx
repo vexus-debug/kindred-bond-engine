@@ -200,7 +200,7 @@ export default function DashboardHome() {
         {/* Patient count — large number card */}
         {canSeePatients && (
           <motion.div variants={stagger.item}>
-            <Card className="relative overflow-hidden border-border/50 bg-gradient-to-br from-card via-card to-primary/[0.04] h-full group hover:shadow-lg hover:border-primary/20 transition-all duration-300">
+            <Card className="relative overflow-hidden border-border/50 bg-card h-full group hover:shadow-lg hover:border-primary/20 transition-all duration-300">
               <CardContent className="p-5 flex flex-col justify-between h-full">
                 <div className="flex items-center justify-between">
                   <div className="h-9 w-9 rounded-xl bg-primary/10 flex items-center justify-center">
@@ -224,7 +224,7 @@ export default function DashboardHome() {
         {/* Today's appointments — radial gauge */}
         {canSeeAppointments && (
           <motion.div variants={stagger.item}>
-            <Card className="relative overflow-hidden border-border/50 bg-gradient-to-br from-card via-card to-emerald-500/[0.03] h-full group hover:shadow-lg hover:border-emerald-500/20 transition-all duration-300">
+            <Card className="relative overflow-hidden border-border/50 bg-card h-full group hover:shadow-lg hover:border-emerald-500/20 transition-all duration-300">
               <CardContent className="p-5 flex flex-col items-center justify-center h-full">
                 <RadialGauge
                   value={schedule.filter(a => a.status === "completed").length}
@@ -246,7 +246,7 @@ export default function DashboardHome() {
         {/* Pending Payments — accent warning card */}
         {canSeeBilling && (
           <motion.div variants={stagger.item}>
-            <Card className="relative overflow-hidden border-border/50 bg-gradient-to-br from-card via-card to-gold/[0.04] h-full group hover:shadow-lg hover:border-gold/20 transition-all duration-300">
+            <Card className="relative overflow-hidden border-border/50 bg-card h-full group hover:shadow-lg hover:border-gold/20 transition-all duration-300">
               <CardContent className="p-5 flex flex-col justify-between h-full">
                 <div className="flex items-center justify-between">
                   <div className="h-9 w-9 rounded-xl bg-gold/10 flex items-center justify-center">
