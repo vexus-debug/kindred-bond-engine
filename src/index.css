@@ -236,8 +236,8 @@
 /* ─── Dashboard background ──────────────────────────────── */
 .dashboard-bg {
   background-color: hsl(var(--background));
-  background-image: radial-gradient(circle at 1px 1px, hsl(var(--border) / 0.5) 0.5px, transparent 0);
-  background-size: 22px 22px;
+  /* Plain background: the previous radial-gradient dot pattern caused
+     composited-tile corruption / horizontal line artifacts on mobile Chrome. */
 }
 
 /* ─── Glass card ────────────────────────────────────────── */
